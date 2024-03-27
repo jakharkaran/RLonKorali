@@ -2,14 +2,14 @@ NLES=32 #32 #64
 case=1
 rewardtype=z1 # [k1,k2,k3,log,]
 statetype=invariantlocalandglobalgradgrad #psiomega # [enstrophy,energy,psidiag,psiomegadiag,psiomegalocal,omegalocal] 
-actiontype=CL
+actiontype=CS # CL CS
 gensize=1
 solver=postprocess
 nagents=16
 nconcurrent=1
 IF_REWARD_CUM=1 #{0,1}
 Tspinup=0
-Thorizon=1e4
+Thorizon=1e4 ### Length of simulation
 NumRLSteps=1e3
 EPERU=1.0
 

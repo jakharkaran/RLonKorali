@@ -1,17 +1,17 @@
-NLES=128 #64 #32
+NLES=32 #64 #32
 case=1
 rewardtype=z1 # [k1,k2,k3,log,]
 statetype=invariantlocalandglobalgradgrad #eps #psiomega # [enstrophy,energy,psidiag,psiomegadiag,psiomegalocal,omegalocal,invariantlocalandglobalgradgrad,invariantlocalandglobalgradgradeps] 
-actiontype=CL #S
-gensize=10
-solver=training #postproces
+actiontype=CS #S
+gensize=10 # 1: for postprecoess, 10 training, number of episode per generation
+solver=training #postprocess
 nagents=16
 nconcurrent=1
-IF_REWARD_CUM=1 #{0,1}
-Tspinup=0
-Thorizon=1e4
-NumRLSteps=1e3
-EPERU=1.0
+IF_REWARD_CUM=1 #{0,1} # Sum of reward ar each time step 1: considers previous timesteps, 0: last time step
+Tspinup=0 # Spin up time model run with NoSGS - pretraining
+Thorizon=1e4 # Number of timesteps per episode
+NumRLSteps=1e3 # Time step when RL network is updated
+EPERU=1.0 # Episodes per update
 
 myoutfile=${solver}_CASE${case}_N${NLES}_R${rewardtype}_S${statetype}_A${actiontype}_nAgents${nagents}_nCCjobs${nconcurrent}_CReward${IF_REWARD_CUM}_Ts${Tspinup}_Thor${Thorizon}_NumRLSteps${NumRLSteps}_EPERU${EPERU}.out
 

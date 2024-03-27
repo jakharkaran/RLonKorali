@@ -165,9 +165,9 @@ for i in range(state_size):
 for i in range(action_size): # size of action 
 	e["Variables"][state_size+i]["Name"] = "Actuator " + str(i)
 	e["Variables"][state_size+i]["Type"] = "Action"
-	e["Variables"][state_size+i]["Lower Bound"] = -0.5**3
-	e["Variables"][state_size+i]["Upper Bound"] = 0.5**3
-	e["Variables"][state_size+i]["Initial Exploration Noise"] = 0.25**3 #0.15**3
+	e["Variables"][state_size+i]["Lower Bound"] = -0.5**3 # Gaussian Cutoffs
+	e["Variables"][state_size+i]["Upper Bound"] = 0.5**3 # Gaussian Cutoffs
+	e["Variables"][state_size+i]["Initial Exploration Noise"] = 0.25**3 #0.15**3 Mean of Gaussian For SMAG: **2 LEITH **3
 
 ### Setting Experience Replay and REFER settings
 e["Solver"]["Experience Replay"]["Off Policy"]["Annealing Rate"] = 5.0e-8
@@ -202,8 +202,9 @@ e["Solver"]["Neural Network"]["Hidden Layers"][3]["Type"] = "Layer/Activation"
 e["Solver"]["Neural Network"]["Hidden Layers"][3]["Function"] = "Elementwise/Tanh"
 
 ### Setting file output configuration
-e["Solver"]["Termination Criteria"]["Max Experiences"] = 10e6
-e["Solver"]["Termination Criteria"]["Max Generations"] = 100 #201
+### For Training
+e["Solver"]["Termination Criteria"]["Max Experiences"] = 10e6 
+e["Solver"]["Termination Criteria"]["Max Generations"] = 101 #201
 e["Solver"]["Experience Replay"]["Serialize"] = True
 e["Console Output"]["Verbosity"] = "Detailed"
 e["File Output"]["Enabled"] = True
